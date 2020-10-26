@@ -35,8 +35,8 @@
 
 3. 为``matplotlib``安装中文字体：  
       [Windows系统] 双击字体文件安装  
-      [Linux系统] 使用``pip show matplotlib``找到``matplotlib``的安装位置，并将``msyh.ttf``文件复制到``matplotlib/mpl_data``的``font目录``下
-4. 复制``clanbattlereport.example``到``config``文件夹，重命名为``clanbattlereport.py``，打开后按照其中的注释说明进行配置
+      [Linux系统] 使用``pip show matplotlib``找到``matplotlib``的安装位置，并将字体文件复制到``matplotlib/mpl_data``的``font目录``下
+4. 复制``clanbattlereport.example``到``config``文件夹，重命名为``clanbattlereport.py``，打开后按照注释进行配置
 5. 修改``config.py``，在``MODULES_ON``中添加``clanbattlereport``
 6. 重启HoshinoBot
 
