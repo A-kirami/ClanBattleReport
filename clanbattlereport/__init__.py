@@ -184,8 +184,8 @@ async def create_resignation_report(bot, ev: CQEvent):
 
     #添加文字到img
 
-    _fontsize = ImageFont.truetype(r'QYW3.ttf', 28)
-    fontsize = ImageFont.truetype(r'RZYZY.ttf',24)
+    _fontsize = ImageFont.truetype('QYW3.ttf', 28)
+    fontsize = ImageFont.truetype('RZYZY.ttf',24)
     x_nickname ,y_nickname = _fontsize.getsize(nickname)
     x_clanname ,y_clanname = fontsize.getsize(clanname)
     add_text(img,nickname,position=(172,623-y_nickname/2),textsize=28)
@@ -360,8 +360,8 @@ async def create_resignation_report(bot, ev: CQEvent):
     img.paste(bar_img2, (100,1815), mask=bar_img2.split()[3])
 
     #添加文字到img
-    _fontsize = ImageFont.truetype(r'QYW3.ttf', 28)
-    fontsize = ImageFont.truetype(r'RZYZY.ttf',24)
+    _fontsize = ImageFont.truetype('QYW3.ttf', 28)
+    fontsize = ImageFont.truetype('RZYZY.ttf',24)
     x_nickname ,y_nickname = _fontsize.getsize(nickname)
     x_clanname ,y_clanname = fontsize.getsize(clanname)
     add_text(img,nickname,position=(172,623-y_nickname/2),textsize=28)
