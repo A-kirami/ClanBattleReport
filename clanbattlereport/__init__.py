@@ -25,9 +25,11 @@ except:
     hoshino.logger.error('not found config of clanbattlereport')
 
 _lmt = FreqLimiter(config.time_limit)
-logo = Image.open(path.join(path.dirname(__file__), 'logo.png'))
 year = datetime.now().strftime('%Y')
 month = str(int(datetime.now().strftime('%m')))
+logo = Image.open(path.join(path.dirname(__file__), 'logo.png'))
+font_QYW3 = os.path.join(os.path.dirname(__file__), 'QYW3.ttf')
+font_RZYZY = os.path.join(os.path.dirname(__file__), 'RZYZY.ttf')
 
 try:
     yobot_url = get_web_address()
@@ -80,7 +82,6 @@ async def create_resignation_report(bot, ev: CQEvent):
     total_chl = len(challenges)
     if total_chl == 0:
         await bot.finish(ev, '没有查询到出刀数据，请出刀后再试', at_sender=True)
-    _lmt.start_cd(uid)
     await bot.send(ev, '正在生成公会战报告书，请稍等……')
     damage_to_boss: list = [0 for i in range(5)]
     times_to_boss: list = [0 for i in range(5)]
@@ -184,16 +185,16 @@ async def create_resignation_report(bot, ev: CQEvent):
 
     #添加文字到img
 
-    _fontsize = ImageFont.truetype('QYW3.ttf', 28)
-    fontsize = ImageFont.truetype('RZYZY.ttf',24)
+    _fontsize = ImageFont.truetype(font_QYW3, 28)
+    fontsize = ImageFont.truetype(font_RZYZY,24)
     x_nickname ,y_nickname = _fontsize.getsize(nickname)
     x_clanname ,y_clanname = fontsize.getsize(clanname)
     add_text(img,nickname,position=(172,623-y_nickname/2),textsize=28)
     img.paste(logo,(174+x_nickname,625-8),logo)
-    add_text(img,clanname,position=(259-x_clanname/2,709-24/2),textsize=24,font='RZYZY.ttf',textfill='#8277b3')
-    add_text(img,year,position=(260-50/2,667-21/2),textsize=24,font='RZYZY.ttf',textfill='#8277b3')
-    add_text(img,month,position=(344-22/2,667-21/2),textsize=24,font='RZYZY.ttf',textfill='#8277b3')
-    add_text(img,constellation,position=(428-48/2,667-24/2),textsize=24,font='RZYZY.ttf',textfill='#8277b3')
+    add_text(img,clanname,position=(259-x_clanname/2,709-24/2),textsize=24,font=font_RZYZY,textfill='#8277b3')
+    add_text(img,year,position=(260-50/2,667-21/2),textsize=24,font=font_RZYZY,textfill='#8277b3')
+    add_text(img,month,position=(344-22/2,667-21/2),textsize=24,font=font_RZYZY,textfill='#8277b3')
+    add_text(img,constellation,position=(428-48/2,667-24/2),textsize=24,font=font_RZYZY,textfill='#8277b3')
     #第一列
     add_text(img,f'{total_chl}',position=(245,801-30/2),textsize=24,textfill='#8277b3')
     add_text(img,f'{disable_chl}',position=(245,849-30/2),textsize=24,textfill='#8277b3')
@@ -208,6 +209,7 @@ async def create_resignation_report(bot, ev: CQEvent):
     img = img.convert('RGB')
     img.save(buf,format='JPEG')
     base64_str = f'base64://{base64.b64encode(buf.getvalue()).decode()}'
+    _lmt.start_cd(uid)
     await bot.send(ev, f'[CQ:image,file={base64_str}]')
     plt.close('all')
     plt.clf()
@@ -215,7 +217,7 @@ async def create_resignation_report(bot, ev: CQEvent):
     gc.collect()
 
 @sv.on_prefix('看看报告')
-async def create_resignation_report(bot, ev: CQEvent):
+async def cexamine_report(bot, ev: CQEvent):
     if not priv.check_priv(ev, priv.ADMIN):
         await bot.finish(ev, '只有群管理才可以查看其他成员的报告书')
     for m in ev.message:
@@ -360,16 +362,16 @@ async def create_resignation_report(bot, ev: CQEvent):
     img.paste(bar_img2, (100,1815), mask=bar_img2.split()[3])
 
     #添加文字到img
-    _fontsize = ImageFont.truetype('QYW3.ttf', 28)
-    fontsize = ImageFont.truetype('RZYZY.ttf',24)
+    _fontsize = ImageFont.truetype(font_QYW3, 28)
+    fontsize = ImageFont.truetype(font_RZYZY,24)
     x_nickname ,y_nickname = _fontsize.getsize(nickname)
     x_clanname ,y_clanname = fontsize.getsize(clanname)
     add_text(img,nickname,position=(172,623-y_nickname/2),textsize=28)
     img.paste(logo,(174+x_nickname,625-8),logo)
-    add_text(img,clanname,position=(259-x_clanname/2,709-24/2),textsize=24,font='RZYZY.ttf',textfill='#8277b3')
-    add_text(img,year,position=(260-50/2,667-21/2),textsize=24,font='RZYZY.ttf',textfill='#8277b3')
-    add_text(img,month,position=(344-22/2,667-21/2),textsize=24,font='RZYZY.ttf',textfill='#8277b3')
-    add_text(img,constellation,position=(428-48/2,667-24/2),textsize=24,font='RZYZY.ttf',textfill='#8277b3')
+    add_text(img,clanname,position=(259-x_clanname/2,709-24/2),textsize=24,font=font_RZYZY,textfill='#8277b3')
+    add_text(img,year,position=(260-50/2,667-21/2),textsize=24,font=font_RZYZY,textfill='#8277b3')
+    add_text(img,month,position=(344-22/2,667-21/2),textsize=24,font=font_RZYZY,textfill='#8277b3')
+    add_text(img,constellation,position=(428-48/2,667-24/2),textsize=24,font=font_RZYZY,textfill='#8277b3')
     #第一列
     add_text(img,f'{total_chl}',position=(245,801-30/2),textsize=24,textfill='#8277b3')
     add_text(img,f'{disable_chl}',position=(245,849-30/2),textsize=24,textfill='#8277b3')

@@ -6,6 +6,9 @@ try:
 except:
     hoshino.logger.error('not found config of clanbattlereport')
 
+font_QYW3 = os.path.join(os.path.dirname(__file__), 'QYW3.ttf')
+font_RZYZY = os.path.join(os.path.dirname(__file__), 'RZYZY.ttf')
+
 def get_db_path():
     if not (os.path.isfile(os.path.abspath(os.path.join(os.path.dirname(__file__), "../"
                                                         "yobot/yobot/src/client/yobot_data/yobotdata.db"))) or os.access(os.path.abspath(os.path.join(os.path.dirname(__file__), "../"
@@ -32,7 +35,7 @@ try:
 except OSError:
     db_path = config.db_path
 
-def add_text(img: Image,text:str,textsize:int,font=r'QYW3.ttf',textfill='#f060b8',position:tuple=(0,0)):
+def add_text(img: Image,text:str,textsize:int,font=font_QYW3,textfill='#f060b8',position:tuple=(0,0)):
     img_font = ImageFont.truetype(font=font,size=textsize)
     draw = ImageDraw.Draw(img)
     draw.text(xy=position,text=text,font=img_font,fill=textfill)
