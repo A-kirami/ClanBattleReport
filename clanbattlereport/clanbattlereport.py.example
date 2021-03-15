@@ -1,4 +1,4 @@
-'''
+﻿'''
 公会战报告书配置
 '''
 class report_config(object):
@@ -12,10 +12,10 @@ class report_config(object):
     time_limit = 60*60
 
 # 离职报告背景图片
-    Resignation = '环游物语离职报告.png'
+    Resignation = '圣诞千歌报告书.png'
 
 # 会战报告背景图片
-    FindingsLetter = '环游物语会战报告.png'
+    FindingsLetter = '圣诞千歌报告书.png'
     
 #=============以下配置插件版不填===============
 

@@ -35,7 +35,7 @@ try:
 except OSError:
     db_path = config.db_path
 
-def add_text(img: Image,text:str,textsize:int,font=font_QYW3,textfill='#f060b8',position:tuple=(0,0)):
+def add_text(img: Image,text:str,textsize:int,font=font_QYW3,textfill='#5593d1',position:tuple=(0,0)):
     img_font = ImageFont.truetype(font=font,size=textsize)
     draw = ImageDraw.Draw(img)
     draw.text(xy=position,text=text,font=img_font,fill=textfill)
